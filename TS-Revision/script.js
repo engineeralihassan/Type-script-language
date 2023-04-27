@@ -90,100 +90,248 @@ console.log(mixed[4]);
 let s: number[] = [12, 34, 56, 78, 90];
 console.log(s[2]);
 */
+/*
 // Tuples in TS
-var tupple = ["Ali", false, 5063];
+let tupple: [string, boolean, number] = ["Ali", false, 5063];
 tupple.push("Amjad sabri");
 console.log(tupple);
 // enums
-var Role;
-(function (Role) {
-    Role[Role["admin"] = 10] = "admin";
-    Role[Role["user"] = 11] = "user";
-    Role[Role["manager"] = 12] = "manager";
-    Role[Role["slaeman"] = 13] = "slaeman";
-})(Role || (Role = {}));
+enum Role {
+      admin = 10, user, manager, slaeman
+}
 console.log(Role);
 console.log(Role.admin);
-var a = Role.slaeman;
+let a = Role.slaeman;
 console.log(a);
 console.log(Role[2]);
 // console.log(Role.manager == 2);
 console.log(Role[1] === 'user');
+
+
 // Literals
-var num = 23;
+let num: string | number = 23;
 num = "Ali Hassan";
 console.log(num);
+
 // Functions Return type
-function sum(a, b) {
-    return a + b;
+function sum(a, b): number {
+      return a + b;
 }
 console.log(sum(12, 45));
+
 // arguments types
-function product(a, b, c) {
-    console.log(a, b, c);
+
+function product(a: number, b: number, c: string) {
+      console.log(a, b, c)
 }
+
 // assign a function to variable
-var d = product(12, 23, "Ali Hasan");
+let d = product(12, 23, "Ali Hasan");
 console.log(d);
-var f;
+let f: Function;
 f = product;
 ;
 console.log(f(12, 34, "Amjad sabri"));
-var car;
+// Allias and interfaces
+// Type Aliases allow defining types with a custom name(an Alias).
+type grade = string;
+type rollNo = number;
+type time = string;
+type student = {
+      grade: grade,
+      roll: rollNo,
+      time: time,
+
+}
+let car: student["time"];
 car = "Ali hassan";
 console.log(car);
-var student3 = {
-    name: 'Ali Hassan',
-    age: 21,
-    cast: "Arain",
-    address: "Chack no 11 1/L",
-    rollno: 5063,
-    section: "A"
-};
+
+// interfaces
+interface student1 {
+      name: string,
+      age: number,
+      cast: string,
+      address: string,
+      rollno: number,
+      section: string
+}
+
+let student3: student1 = {
+      name: 'Ali Hassan',
+      age: 21,
+      cast: "Arain",
+      address: "Chack no 11 1/L",
+      rollno: 5063,
+      section: "A"
+}
 console.log(student3);
 console.log(student3.rollno);
 console.log(student3.name);
+
 // union types
-var sum1 = false;
+let sum1: boolean | string = false;
 sum1 = "true";
 console.log(sum1);
+
 // functions
-function func1(a, b) {
-    console.log("This is the Viod return type function", a, b);
+function func1(a: number, b: string): void {
+      console.log("This is the Viod return type function", a, b)
 }
 // opetional parameters
-function getsum(a, b, c) {
-    return a + b + (c || 0);
+function getsum(a: number, b: number, c?: number): number {
+      return a + b + (c || 0);
 }
 console.log(getsum(12, 34));
 console.log(getsum(12, 45, 67));
-// defualt values 
-function func2(a, b) {
-    if (a === void 0) { a = 12; }
-    if (b === void 0) { b = "Aslam"; }
-    console.log(a, b);
+// defualt values
+function func2(a: number = 12, b: string = "Aslam") {
+      console.log(a, b);
 }
 func2();
 func2(45, "Ali hassan");
 // named parameters
-function divide(_a) {
-    var dividend = _a.dividend, divisor = _a.divisor;
-    return dividend / divisor;
+function divide({ dividend, divisor }: { dividend: number, divisor: number }) {
+      return dividend / divisor;
 }
+
+interface s1 {
+      dividend: number,
+      divisor: number
+}
+
 // Rest parameters
-function func3(a) {
-    var rest = [];
-    for (var _i = 1; _i < arguments.length; _i++) {
-        rest[_i - 1] = arguments[_i];
-    }
-    console.log(a);
-    for (var i = 0; i < rest.length; i++) {
-        console.log(rest[i]);
-    }
+function func3(a: string, ...rest) {
+      console.log(a);
+      for (let i = 0; i < rest.length; i++) {
+            console.log(rest[i]);
+      }
 }
 func3("Ali Hassan Friends", "Aans", "Usman", "Husnain", 23, "Adeel", "Boos naveed", false);
-function fun1(value) {
-    return value + 10;
+
+
+// Allias for functions
+type fun = (value: number) => number;
+function fun1(value): fun {
+      return value + 10;
 }
-var fun3 = function (value) { return value * 34; };
+
+let fun3 = (value) => value * 34;
 console.log(fun3(23));
+*/
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+// we can also make the multiple files and compile the all the files at onece in type script
+// for do this we need to generste the type script config file first then we
+//compile all the ts file and get the result at once in type script
+// tsc -init to make the config file
+// tsc -w for the compile all the ts files ain this current directory
+// OOP is start from Here
+// classes
+console.log("OOP is started from Her in type script");
+var MYClass = /** @class */ (function () {
+    function MYClass(name) {
+        this.name = name;
+    }
+    return MYClass;
+}());
+var obj = new MYClass("Ali Hassan");
+console.log(obj.name);
+// Access specifiers
+var Bank = /** @class */ (function () {
+    function Bank(balance) {
+        this.balance = balance;
+    }
+    Bank.prototype.getBalance = function () {
+        console.log(this.balance);
+    };
+    return Bank;
+}());
+var bank = new Bank(234567);
+bank.getBalance();
+// shorthand property and
+var MYClass2 = /** @class */ (function () {
+    function MYClass2(name) {
+        this.name = name;
+    }
+    MYClass2.prototype.printName = function () {
+        console.log(this.name);
+    };
+    return MYClass2;
+}());
+var obj2 = new MYClass2("Ali Hassan");
+obj2.printName();
+// readonly
+var MYClass3 = /** @class */ (function () {
+    function MYClass3(name) {
+        // name could not change after this
+        this.name = name;
+    }
+    MYClass3.prototype.printName = function () {
+        console.log(this.name);
+    };
+    return MYClass3;
+}());
+var obj3 = new MYClass3("amjad ali");
+obj3.printName();
+var Rectangle = /** @class */ (function () {
+    function Rectangle(width, height) {
+        this.width = width;
+        this.height = height;
+    }
+    Rectangle.prototype.getArea = function () { return this.width * this.height; };
+    return Rectangle;
+}());
+var shap = new Rectangle(12, 34);
+var f = shap.getArea();
+console.log(f);
+var Circle = /** @class */ (function (_super) {
+    __extends(Circle, _super);
+    function Circle(width, height) {
+        return _super.call(this, width, height) || this;
+    }
+    return Circle;
+}(Rectangle));
+var circle = new Circle(2, 34);
+var s = circle.getArea();
+console.log(s);
+var Rectangle1 = /** @class */ (function () {
+    // using protected for these members allows access from classes that extend from this class, such as Square
+    function Rectangle1(width, height) {
+        this.width = width;
+        this.height = height;
+    }
+    Rectangle1.prototype.getArea = function () {
+        return this.width * this.height;
+    };
+    Rectangle1.prototype.toString = function () {
+        return "Rectangle[width=".concat(this.width, ", height=").concat(this.height, "]");
+    };
+    return Rectangle1;
+}());
+var Square = /** @class */ (function (_super) {
+    __extends(Square, _super);
+    function Square(width) {
+        return _super.call(this, width, width) || this;
+    }
+    // this toString replaces the toString from Rectangle
+    Square.prototype.toString = function () {
+        return "Square[width=".concat(this.width, "]");
+    };
+    return Square;
+}(Rectangle1));
+var overrideobj = new Square(23);
+console.log(overrideobj.toString());

@@ -90,6 +90,7 @@ console.log(mixed[4]);
 let s: number[] = [12, 34, 56, 78, 90];
 console.log(s[2]);
 */
+/*
 // Tuples in TS
 let tupple: [string, boolean, number] = ["Ali", false, 5063];
 tupple.push("Amjad sabri");
@@ -217,9 +218,122 @@ function fun1(value): fun {
 
 let fun3 = (value) => value * 34;
 console.log(fun3(23));
+*/
+
+// we can also make the multiple files and compile the all the files at onece in type script
+// for do this we need to generste the type script config file first then we
+//compile all the ts file and get the result at once in type script
+// tsc -init to make the config file
+// tsc -w for the compile all the ts files ain this current directory
 
 
+// OOP is start from Here
+// classes
 
 
+console.log("OOP is started from Her in type script");
+class MYClass {
+      name: string;
+      constructor(name: string) {
+            this.name = name;
+      }
+}
+let obj = new MYClass("Ali Hassan");
+
+console.log(obj.name)
 
 
+// Access specifiers
+
+class Bank {
+      private balance;
+      public constructor(balance: number) {
+            this.balance = balance;
+      }
+      public getBalance() {
+            console.log(this.balance);
+      }
+
+}
+
+let bank = new Bank(234567);
+bank.getBalance();
+// shorthand property and
+class MYClass2 {
+      constructor(private name: string) { }
+      public printName() {
+            console.log(this.name);
+      }
+}
+let obj2 = new MYClass2("Ali Hassan");
+obj2.printName();
+
+// readonly
+class MYClass3 {
+      readonly name: string;
+      constructor(name: string) {
+            // name could not change after this
+            this.name = name;
+      }
+      public printName() {
+            console.log(this.name);
+      }
+}
+let obj3 = new MYClass3("amjad ali");
+obj3.printName();
+
+// inheritance
+interface Shap {
+      getArea: () => number;
+}
+
+class Rectangle implements Shap {
+      public constructor(private width: number, private height: number) { }
+      public getArea(): number { return this.width * this.height; }
+}
+
+let shap = new Rectangle(12, 34);
+let f = shap.getArea();
+console.log(f);
+
+class Circle extends Rectangle {
+      public constructor(width: number, height: number) {
+            super(width, height);
+      }
+
+}
+
+let circle = new Circle(2, 34);
+let s = circle.getArea();
+console.log(s);
+// ovveride
+interface Shape1 {
+      getArea: () => number;
+}
+class Rectangle1 implements Shape1 {
+      // using protected for these members allows access from classes that extend from this class, such as Square
+      public constructor(protected readonly width: number, protected readonly height: number) { }
+
+      public getArea(): number {
+            return this.width * this.height;
+      }
+
+      public toString(): string {
+            return `Rectangle[width=${this.width}, height=${this.height}]`;
+      }
+}
+
+class Square extends Rectangle1 {
+      public constructor(width: number) {
+            super(width, width);
+      }
+
+      // this toString replaces the toString from Rectangle
+      public override toString(): string {
+            return `Square[width=${this.width}]`;
+      }
+}
+
+
+let overrideobj = new Square(23);
+console.log(overrideobj.toString());
