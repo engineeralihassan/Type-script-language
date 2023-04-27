@@ -234,6 +234,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var _a;
 // we can also make the multiple files and compile the all the files at onece in type script
 // for do this we need to generste the type script config file first then we
 //compile all the ts file and get the result at once in type script
@@ -331,7 +332,40 @@ var Square = /** @class */ (function (_super) {
     Square.prototype.toString = function () {
         return "Square[width=".concat(this.width, "]");
     };
+    Object.defineProperty(Square.prototype, "cnic1", {
+        get: function () {
+            return this.cnic;
+        },
+        // getter setter
+        set: function (nwcnic) {
+            this.cnic = nwcnic;
+        },
+        enumerable: false,
+        configurable: true
+    });
     return Square;
 }(Rectangle1));
+var MYClass4 = /** @class */ (function () {
+    function MYClass4() {
+    }
+    MYClass4.GetDetails = function (name) {
+        console.log("Name : ".concat(name, " class : BSSE-A  Roll no : 5063"));
+    };
+    return MYClass4;
+}());
 var overrideobj = new Square(23);
 console.log(overrideobj.toString());
+overrideobj.cnic1 = 1234567890;
+console.log(overrideobj.cnic1);
+console.log("Static method is called");
+MYClass4.GetDetails("Ali Hassan");
+// Dome type script
+var paragraph = document.querySelector('p');
+console.log(paragraph === null || paragraph === void 0 ? void 0 : paragraph.textContent);
+// let input = <HTMLInputElement>document.querySelector('input');
+var input = document.querySelector('input');
+input.value = 'Hello ali hassan';
+console.log(input === null || input === void 0 ? void 0 : input.value);
+// we can tell the type script this is input element
+var btn = (_a = document.querySelector('button')) === null || _a === void 0 ? void 0 : _a.innerText;
+console.log(btn);

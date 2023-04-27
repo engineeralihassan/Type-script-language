@@ -19,7 +19,21 @@ console.log(typeof getAdd('ali', 'hassan'));
 console.log(getAdd(25, 23));
 console.log(getAdd('ali', 23));
 
+function add(a: string, b: string): string;
 
+function add(a: number, b: number): number;
 
+function add(a: any, b: any): any {
+      return a + b;
+}
+
+add("Hello ", "Steve");
+add(10, 20);
+
+// Genrics
+function createPair<S, T>(v1: S, v2: T): [S, T] {
+      return [v1, v2];
+}
+console.log(createPair<string, number>('hello', 42));
 
 

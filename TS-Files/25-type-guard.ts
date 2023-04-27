@@ -87,4 +87,3 @@ function useVehicle(veh: vehicle) {
 }
 let obj1 = new Car();
 useVehicle(obj1);
-

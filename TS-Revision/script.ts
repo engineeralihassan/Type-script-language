@@ -324,6 +324,7 @@ class Rectangle1 implements Shape1 {
 }
 
 class Square extends Rectangle1 {
+      private cnic: number;
       public constructor(width: number) {
             super(width, width);
       }
@@ -332,8 +333,43 @@ class Square extends Rectangle1 {
       public override toString(): string {
             return `Square[width=${this.width}]`;
       }
+      // getter setter
+      set cnic1(nwcnic: number) {
+            this.cnic = nwcnic;
+      }
+      get cnic1(): number {
+            return this.cnic;
+      }
+}
+
+class MYClass4 {
+      private name: string;
+      public static GetDetails(name: string) {
+            console.log(`Name : ${name} class : BSSE-A  Roll no : 5063`);
+      }
 }
 
 
 let overrideobj = new Square(23);
 console.log(overrideobj.toString());
+
+overrideobj.cnic1 = 1234567890;
+console.log(overrideobj.cnic1);
+
+console.log("Static method is called");
+MYClass4.GetDetails("Ali Hassan");
+
+// Dome type script
+let paragraph = document.querySelector('p');
+console.log(paragraph?.textContent);
+// let input = <HTMLInputElement>document.querySelector('input');
+let input = document.querySelector('input') as HTMLInputElement;
+
+input.value = 'Hello ali hassan';
+
+console.log(input?.value);
+// we can tell the type script this is input element
+let btn = document.querySelector('button')?.innerText;
+console.log(btn);
+
+
