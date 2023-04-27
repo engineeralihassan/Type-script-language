@@ -1,4 +1,6 @@
 console.log("Wellcome to object types in ts");
+
+
 // we declaire an object in ts like js 
 let obj1 = {
     name: 'Ali Hassan',
