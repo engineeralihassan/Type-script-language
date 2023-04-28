@@ -28,13 +28,13 @@ abstract class Person11 {
 }
 class AnotherPerson extends Person11 {
 
-      constructor(name: string) {
+      constructor(private name: string) {
             super(name);
 
       }
       // abstract method
       describe() {
-            console.log('Another person is :', this, name)
+            console.log('Another person is :', this.name)
       }
 
 }

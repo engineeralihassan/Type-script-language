@@ -347,6 +347,10 @@ class MYClass4 {
       public static GetDetails(name: string) {
             console.log(`Name : ${name} class : BSSE-A  Roll no : 5063`);
       }
+      static createEmployee(name: string) {
+            return { name: name, className: "BSSE-A", phone: "03133324617" };
+
+      }
 }
 
 
@@ -371,5 +375,136 @@ console.log(input?.value);
 // we can tell the type script this is input element
 let btn = document.querySelector('button')?.innerText;
 console.log(btn);
+MYClass4.createEmployee("Ali Hassan");
+// function overloading
+type combine = number | string;
 
+function getAdd(a: string, b: string): string;
+function getAdd(a: number, b: number): number;
+function getAdd(a: number, b: string): string;
+function getAdd(a: string, b: number): string;
+function getAdd(a: combine, b: combine): combine {
+      if (typeof a === 'string' || typeof b === 'string') {
+            return a.toString() + b.toString();
+      }
+      return a + b;
+
+}
+
+console.log(typeof getAdd('ali', 23));
+
+console.log(typeof getAdd('ali', 'hassan'));
+console.log(getAdd(25, 23));
+console.log(getAdd('ali', 23));
+
+function add(a: string, b: string): string;
+
+function add(a: number, b: number): number;
+
+function add(a: any, b: any): any {
+      return a + b;
+}
+
+add("Hello ", "Steve");
+add(10, 20);
+
+// Genrics for 
+// functions
+function createPair<S, T>(v1: S, v2: T): [S, T] {
+      return [v1, v2];
+}
+console.log(createPair<string, number>('hello', 42));
+
+// Classes
+class NamedValue<T> {
+      private _value: T | undefined;
+
+      constructor(private name: string) { }
+
+      public setValue(value: T) {
+            this._value = value;
+      }
+
+      public getValue(): T | undefined {
+            return this._value;
+      }
+
+      public toString(): string {
+            return `${this.name}: ${this._value}`;
+      }
+}
+
+let value = new NamedValue<number>('myNumber');
+value.setValue(10);
+console.log(value.toString());
+
+// Typs script utility types
+// TypeScript comes with a large number of types that can help with some common type manipulation, usually referred to as utility types
+//Partial
+// Partial changes all the properties in an object to be optional.
+interface Point {
+      x: number;
+      y: number;
+}
+
+let pointPart: Partial<Point> = {}; // `Partial` allows x and y to be optional
+pointPart.x = 10;
+
+// Required changes all the properties in an object to be required.
+interface Car {
+      make: string;
+      model: string;
+      mileage?: number;
+}
+
+let myCar: Required<Car> = {
+      make: 'Ford',
+      model: 'Focus',
+      mileage: 12000
+};
+// Record is a shortcut to defining an object type with a specific key type and value type.
+const nameAgeMap: Record<string, number> = {
+      'Alice': 21,
+      'Bob': 25
+};
+// Omit removes keys from an object type.
+interface Person {
+      name: string;
+      age: number;
+      location?: string;
+}
+
+const bob: Omit<Person, 'age' | 'location'> = {
+      name: 'Bob'
+      // `Omit` has removed age and location from the type and they can't be defined here
+};
+// Pick removes all but the specified keys from an object type.
+interface Person {
+      name: string;
+      age: number;
+      location?: string;
+}
+
+const bob: Pick<Person, 'name'> = {
+      name: 'Bob'
+      // `Pick` has only kept name, so age and location were removed from the type and they can't be defined here
+};
+// Exclude removes types from a union.
+type Primitive = string | number | boolean
+const value: Exclude<Primitive, string> = true; // a string cannot be used here since Exclude removed it from the type.
+
+// key of
+interface Person {
+      name: string;
+      age: number;
+}
+// `keyof Person` here creates a union type of "name" and "age", other strings will not be allowed
+function printPersonProperty(person: Person, property: keyof Person) {
+      console.log(`Printing person property ${property}: "${person[property]}"`);
+}
+let person = {
+      name: "Max",
+      age: 27
+};
+printPersonProperty(person, "name");
 
